@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Location  
 
 def index(request):
+    
+    locations = Location.objects.all()
+
     context = {
-        'rooms': 1,
-        'cuartos': 2
+        'locations': locations,  
     }
 
     return render(request, 'map/index.html', context)

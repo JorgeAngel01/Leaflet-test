@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaflet Routing Machine Example</title>
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+
+    <!-- Leaflet Routing Machine CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css"
+    />
+
+    <!-- Leaflet and Routing Machine JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+
+    
+  </head>
+  <body>
+    <div id="map" style="width: 100%; height: 500px"></div>
+
+    <form id="route-form">
+      <label for="start">Starting Location:</label>
+      <select id="start" required>
+        <option value="">Select starting location</option>
+        {% for location in locations %}
+        <option value="{{ location.Lat }},{{ location.Lng }}">
+          {{ location.Nombre }}
+        </option>
+        {% endfor %}
+      </select>
+      <br />
+      <label for="end">Ending Location:</label>
+      <select id="end" required>
+        <option value="">Select ending location</option>
+        {% for location in locations %}
+        <option value="{{ location.Lat }},{{ location.Lng }}">
+          {{ location.Nombre }}
+        </option>
+        {% endfor %}
+      </select>
+      <br />
+      <input type="submit" value="Find Walkable Route" />
+    </form>
+    <script src="{% static 'js/map.js' %}"></script>
+  </body>
+</html>
